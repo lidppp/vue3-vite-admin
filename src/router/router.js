@@ -1,7 +1,7 @@
 import {createRouter, createWebHistory} from "vue-router";
 import Home from "@/pages/index/index.vue"
 import store from "@/store"
-
+// 静态路由
 export const routeList = [
     {
         path: '/',
@@ -30,7 +30,7 @@ export const routeList = [
     }
 
 ];
-
+// 异步路由
 export const syncRouterList = [
     {
         path: "/list",
@@ -65,7 +65,7 @@ export const syncRouterList = [
         ]
     }
 ]
-
+// 404页面
 export const notFindRouter = {
     path: '/:pathMatch(.*)*',
     name: "NotFind",
@@ -86,7 +86,6 @@ const router = createRouter({
 
 // 路由守卫
 router.beforeEach(async (to, from, next) => {
-
     if (to.name !== "Login" && store.state.routerList.baseList.length === 0) {
         await store.dispatch("routerList/getBaseList")
         next({path: to.path})

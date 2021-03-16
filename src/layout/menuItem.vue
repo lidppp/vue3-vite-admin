@@ -1,4 +1,5 @@
 <template>
+  <!--渲染下拉-->
   <template v-if="(data.children && data.children?.length) && (data.meta && (data.meta.hidden !== true) && !data.redirect) ">
     <el-submenu :index="data.path!==undefined ?data.path : data.index">
       <template #title>
@@ -20,7 +21,7 @@
       </template>
     </el-submenu>
   </template>
-
+  <!--渲染单个-->
   <template v-else-if="(data.meta && (data.meta.hidden !== true) && !data.redirect)">
     <el-menu-item :index="data.path!==undefined?data.path : `${data.index}`">
       <i v-if="data.meta && data.meta.icon" :class="data.meta.icon"></i>

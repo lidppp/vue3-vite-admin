@@ -1,5 +1,6 @@
 <template>
   <div class="header-box">
+    <!--面包屑-->
     <div class="breadcrumb-box">
       <el-breadcrumb separator="/">
         <template v-for="item in routerHistoryList">
@@ -12,6 +13,7 @@
         </template>
       </el-breadcrumb>
     </div>
+    <!--右侧头像下拉-->
     <div class="avatar">
       <el-dropdown>
         <div class="avatar-box">
