@@ -25,8 +25,8 @@
 
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>个人中心</el-dropdown-item>
-            <el-dropdown-item>退出登录</el-dropdown-item>
+            <!--<el-dropdown-item>个人中心</el-dropdown-item>-->
+            <el-dropdown-item @click="loginOut">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -37,12 +37,16 @@
 </template>
 
 <script>
+import {mapMutations} from "vuex"
 export default {
   name: "header-box",
   computed: {
     routerHistoryList() {
       return this.$route.matched
     }
+  },
+  methods:{
+    ...mapMutations("user",["loginOut"])
   }
 }
 </script>

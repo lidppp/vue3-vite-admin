@@ -1,0 +1,27 @@
+/* 设置鼠标进入时，元素的动画 */
+@keyframes in {
+  /* 初始关键帧 */
+  0% {
+    width: 0;
+    height: 0;
+  }
+  /* 结尾关键帧 */
+  100% {
+    width: 1200px;
+    height: 1200px;
+  }
+}
+
+/* 设置鼠标离开时，元素的动画 */
+@keyframes out {
+  /* 初始关键帧 */
+  0% {
+    width: 1200px;
+    height: 1200px;
+  }
+  /* 结尾关键帧 */
+  100% {
+    width: 0;
+    height: 0;
+  }
+}
