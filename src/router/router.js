@@ -31,6 +31,7 @@ export const routeList = [
 
 ];
 // 异步路由
+// 注意: name不能重复
 export const syncRouterList = [
     {
         path: "/list",
@@ -38,7 +39,8 @@ export const syncRouterList = [
         component: "list/index",
         meta: {
             title: "列表",
-            icon: "el-icon-s-tools"
+            icon: "el-icon-s-tools",
+            hideChildren: true
         },
         children: [
             {
@@ -59,6 +61,14 @@ export const syncRouterList = [
                 component: "list/index",
                 meta: {
                     title: "首页2",
+                    icon: "el-icon-s-tools"
+                }
+            }, {
+                path: "/list/index2/add",
+                name: "ListIndex2accc",
+                component: "list/add/add",
+                meta: {
+                    title: "首页2Add",
                     icon: "el-icon-s-tools"
                 }
             }

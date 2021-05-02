@@ -1,18 +1,22 @@
 <template>
   <div class="header-box">
     <!--面包屑-->
-    <div class="breadcrumb-box">
-      <el-breadcrumb separator="/">
-        <template v-for="item in routerHistoryList">
-          <template v-if="item.path">
-            <el-breadcrumb-item :to="{ path: item.path }">{{ item.meta.title }}</el-breadcrumb-item>
+    <transition name="fade" :duration="500">
+      <div class="breadcrumb-box" v-if="breadcrumb">
+        <el-breadcrumb separator="/">
+          <template v-for="item in routerHistoryList">
+            <template v-if="item.path">
+              <el-breadcrumb-item :to="{ path: item.path }">{{ item.meta.title }}</el-breadcrumb-item>
+            </template>
+            <template v-else>
+              <el-breadcrumb-item>{{ item.meta.title }}</el-breadcrumb-item>
+            </template>
+
           </template>
-          <template v-else>
-            <el-breadcrumb-item>{{ item.meta.title }}</el-breadcrumb-item>
-          </template>
-        </template>
-      </el-breadcrumb>
-    </div>
+        </el-breadcrumb>
+      </div>
+    </transition>
+
     <!--右侧头像下拉-->
     <div class="avatar">
       <el-dropdown>
@@ -38,15 +42,29 @@
 
 <script>
 import {mapMutations} from "vuex"
+
 export default {
   name: "header-box",
+  data() {
+    return {
+      breadcrumb: true
+    }
+  },
   computed: {
     routerHistoryList() {
       return this.$route.matched
     }
   },
-  methods:{
-    ...mapMutations("user",["loginOut"])
+  methods: {
+    ...mapMutations("user", ["loginOut"])
+  },
+  watch: {
+    "$route.path": function () {
+      this.breadcrumb = false;
+      this.$nextTick(() => {
+        this.breadcrumb = true;
+      })
+    }
   }
 }
 </script>
@@ -74,6 +92,5 @@ export default {
     }
   }
 }
-
 
 </style>

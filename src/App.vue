@@ -1,6 +1,10 @@
 <template>
   <Layout v-if="!$route.meta.notLayout">
-    <router-view></router-view>
+    <router-view v-slot="{ Component }">
+      <transition name="fade-page" mode="out-in">
+        <component :is="Component"/>
+      </transition>
+    </router-view>
   </Layout>
   <router-view v-if="$route.meta.notLayout"></router-view>
 </template>

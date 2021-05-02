@@ -3,11 +3,13 @@ import router, {notFindRouter, routeList} from "../router/router";
 
 function formatRouterList(list) {
     for (let i = 0; i < list.length; i++) {
-        if (list[i].component) {
+        if (!list[i].children && list[i].component) {
             let fileName = list[i].component.split("/")
-            list[i].component = () => import(`../pages/${fileName[0]}/${fileName[1]}.vue`);
+            let importPath = "../pages/" + fileName.join("/") + ".vue"
+            list[i].component = () => import(importPath);
         }
         if (list[i].children && list[i].children.length > 0) {
+            list[i].component = () => import("../layout/baseRouter.vue");
             formatRouterList(list[i].children)
         }
     }
